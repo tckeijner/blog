@@ -1,6 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { useStyles } from '../theme/theme';
+import { login } from '../webapi/authentication';
 
 const Login = () => {
   const classes = useStyles();
@@ -8,23 +9,10 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    post({
-      email: formData.get('email'),
-      password: formData.get('password'),
+    login({
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
     });
-  };
-
-  const post = (req: any) => {
-    return fetch('http://localhost:4000/login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(req),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
   };
 
   return (

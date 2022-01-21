@@ -66,13 +66,13 @@ export const useStyles = makeStyles({
     width: '95%',
     backgroundColor: theme.palette.background.default
   },
-  registerUser: {
+  credentialsForm: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'start',
     justifyContent: 'space-between'
   },
-  registerUserItem: {
+  credentialsItem: {
     marginTop: 5
   },
   // To get rid of the link styling:

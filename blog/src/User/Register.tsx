@@ -31,24 +31,18 @@ const RegisterUser = () => {
       .then((data) => console.log(data));
   };
 
-  // const post = () => {
-  //   fetch('http://localhost:9000/testAPI')
-  //     .then((res) => res.text())
-  //     .then((res) => console.log(res));
-  // };
-
   return (
     <form onSubmit={handleSubmit}>
-      <Box className={classes.registerUser}>
+      <Box className={classes.credentialsForm}>
         <TextField
-          className={classes.registerUserItem}
+          className={classes.credentialsItem}
           id='email'
           label='E-mail'
           variant='outlined'
           name='email'
         />
         <TextField
-          className={classes.registerUserItem}
+          className={classes.credentialsItem}
           id='password'
           label='Password'
           type='password'
@@ -56,7 +50,7 @@ const RegisterUser = () => {
           name='password'
         />
         <TextField
-          className={classes.registerUserItem}
+          className={classes.credentialsItem}
           id='password-confirm'
           label='Confirm password'
           type='password'
@@ -64,7 +58,7 @@ const RegisterUser = () => {
           name='password-confirm'
         />
         <Button
-          className={classes.registerUserItem}
+          className={classes.credentialsItem}
           variant='contained'
           color='primary'
           type='submit'

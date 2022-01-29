@@ -1,6 +1,6 @@
 import Knex from 'knex';
-import knexConfig from './knexfile';
-import { createHmac, randomBytes } from 'crypto';
+import knexConfig from './database/knexfile';
+import { createHmac, randomBytes, randomUUID } from 'crypto';
 
 const knex = Knex(knexConfig);
 
@@ -24,8 +24,23 @@ export async function authenticate({ email, password }) {
     password,
     salt: user.salt,
   });
-  return { success: hash === user.encrypted_password };
+  return {
+    success: hash === user.encrypted_password,
+    id: user.id,
+  };
 };
+
+export async function generateAuthenticationToken({ id }) {
+  console.log('Generating authentication token for user' + id);
+  const uuid = randomUUID();
+  console.log('UUID: ' + uuid);
+  const authToken = await knex('auth_token').insert({
+    id: uuid,
+    user_id: id,
+  });
+  console.log('inserted in database');
+  return uuid;
+}
 
 export function encryptPassword({ password, salt = randomString() }) {
   const hash = createHmac('sha512', salt).update(password);

@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import credentials from './mysql-credentials.json';
+import credentials from '../mysql-credentials.json';
 
 const config: Knex.Config = {
   client: 'mysql',
@@ -8,6 +8,9 @@ const config: Knex.Config = {
     password: credentials.password,
     database: 'blog',
   },
+  migrations: {
+    directory: './migrations',
+  }
 };
 
 export default config;

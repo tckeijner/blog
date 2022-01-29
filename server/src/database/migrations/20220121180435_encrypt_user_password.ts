@@ -1,5 +1,5 @@
 import { Knex } from 'knex';
-import { encryptPassword } from '../store';
+import { encryptPassword } from '../../store';
 
 export async function up(knex: Knex) {
   await knex.schema.table('user', (t) => {

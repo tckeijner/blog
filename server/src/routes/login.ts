@@ -1,5 +1,5 @@
 import express from 'express';
-import { authenticate } from '../../store';
+import { authenticate } from '../store';
 const router = express.Router();
 
 router.post('/', (req, res, next) => {

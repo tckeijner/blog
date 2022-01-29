@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import routes from './migrations/routes';
+import routes from './routes';
 import cors from 'cors';
 
 const port = 4000;

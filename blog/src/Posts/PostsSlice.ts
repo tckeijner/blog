@@ -9,18 +9,7 @@ export interface BlogPost {
 export const postsSlice = createSlice({
   name: 'posts',
   initialState: {
-    publishedPosts: [
-      {
-        title: 'Post one',
-        content: 'Content content content content content content content content content content content content content content',
-        dateTime: new Date()
-      },
-      {
-        title: 'Post two',
-        content: 'Content content content content content content content content content content content content content content',
-        dateTime: new Date(),
-      },
-    ],
+    publishedPosts: [],
     draftPosts: [],
   },
   reducers: {

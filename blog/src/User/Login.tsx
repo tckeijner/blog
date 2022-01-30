@@ -1,18 +1,22 @@
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import { useDispatch } from 'react-redux';
 import { useStyles } from '../theme/theme';
-import { login } from '../webapi/authentication';
+import { requestAuthToken } from '../webapi/authentication';
+import { loginUser } from '../webapi/authSlice';
 
 const Login = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    login({
+    const authenticationToken: string = await requestAuthToken({
       email: formData.get('email') as string,
       password: formData.get('password') as string,
     });
+    dispatch(loginUser({ authenticationToken }));
   };
 
   return (

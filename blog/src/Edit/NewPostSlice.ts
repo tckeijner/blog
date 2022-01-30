@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const newPostSlice = createSlice({
   name: 'newPost',
@@ -23,7 +23,7 @@ export const newPostSlice = createSlice({
       dateTime: null,
     })
   }
-})
+});
 
 export const { updateTitle, updateContent, clearPost } = newPostSlice.actions;
 

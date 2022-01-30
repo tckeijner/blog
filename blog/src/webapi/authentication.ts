@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = 'http://localhost:4000';
 
 export const registerUser = async (req: AuthenticationRequest) => {
   const res = await fetch(BASE_URL + '/registerUser', createPostRequest(req));
@@ -20,8 +20,8 @@ const createPostRequest = (req: AuthenticationRequest) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(req),
-  }
-}
+  };
+};
 
 interface AuthenticationRequest {
   email: string;

@@ -1,8 +1,8 @@
-import { Provider, useSelector } from "react-redux";
-import Post from "../Post";
-import { BlogPost } from "../PostsSlice";
-import { AppState } from "../../state/reducers";
-import store from "../../state/store";
+import { Provider, useSelector } from 'react-redux';
+import Post from '../Post';
+import { BlogPost } from '../PostsSlice';
+import { AppState } from '../../state/reducers';
+import store from '../../state/store';
 
 function Posts() {
   const posts: Array<BlogPost> = useSelector(

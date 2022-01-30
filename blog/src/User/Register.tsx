@@ -15,7 +15,7 @@ const RegisterUser = () => {
         password: formData.get('password') as string,
       });
     } else {
-      console.log("Passwords don't match");
+      console.log('Passwords do not match');
     }
   };
 

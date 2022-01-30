@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface BlogPost {
   title: string;
@@ -43,7 +43,7 @@ export const postsSlice = createSlice({
         post.dateTime !== action.payload)
     })
   }
-})
+});
 
 export const { addPublishedPosts, removePublishedPost, addDraft, removeDraftPost } = postsSlice.actions;
 

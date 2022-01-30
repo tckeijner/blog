@@ -1,9 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const routes = require('./routes');
-const port = 4000;
+import express from 'express';
+import bodyParser from 'body-parser';
+import routes from './routes';
+import cors from 'cors';
 
-const cors = require('cors');
+const port = 4000;
 
 //Create express app
 const app = express();
@@ -16,3 +16,4 @@ app.use('/', routes);
 app.listen(port, () => {
   console.log('Now listening on port', port);
 });
+

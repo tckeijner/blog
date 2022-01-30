@@ -1,6 +1,7 @@
-const { encryptPassword } = require('../store');
+import { Knex } from 'knex';
+import { encryptPassword } from '../../store';
 
-exports.up = async function up(knex) {
+export async function up(knex: Knex) {
   await knex.schema.table('user', (t) => {
     t.string('salt').notNullable();
     t.string('encrypted_password').notNullable();
@@ -17,12 +18,12 @@ exports.up = async function up(knex) {
       encrypted_password: hash,
     });
   }
-};
+}
 
-exports.down = function down(knex) {
+export function down(knex: Knex) {
   return knex.schema.table('user', (t) => {
     t.dropColumn('salt');
     t.dropColumn('encrypted_password');
     t.string('password').notNullable();
   });
-};
+}

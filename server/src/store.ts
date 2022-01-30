@@ -5,14 +5,14 @@ import { createHmac, randomBytes, randomUUID } from 'crypto';
 const knex = Knex(knexConfig);
 
 export function registerUser({ email, password }) {
-  console.log('in register user')
+  console.log('in register user');
   const { salt, hash } = encryptPassword({ password });
   return knex('user').insert({
     email,
     salt,
     encrypted_password: hash,
   });
-};
+}
 
 export async function authenticate({ email, password }) {
   console.log(`Authenticating user ${email}`);
@@ -28,7 +28,7 @@ export async function authenticate({ email, password }) {
     success: hash === user.encrypted_password,
     id: user.id,
   };
-};
+}
 
 export async function generateAuthenticationToken({ id }) {
   console.log('Generating authentication token for user' + id);
@@ -48,8 +48,8 @@ export function encryptPassword({ password, salt = randomString() }) {
     salt,
     hash: hash.digest('hex'),
   };
-};
+}
 
 function randomString() {
   return randomBytes(4).toString('hex');
-};
+}

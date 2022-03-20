@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:4000';
+import { BASE_URL } from './apiConfig';
+import { AuthenticationRequest } from './models';
+import { createPostRequest } from './utils';
 
 export const registerUser = async (req: AuthenticationRequest) => {
   const res = await fetch(BASE_URL + '/registerUser', createPostRequest(req));
@@ -11,19 +13,3 @@ export const requestAuthToken = async (req: AuthenticationRequest) => {
   const data = await res.json();
   return data.auth_token;
 };
-
-const createPostRequest = (req: AuthenticationRequest) => {
-  return {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(req),
-  };
-};
-
-interface AuthenticationRequest {
-  email: string;
-  password: string;
-}

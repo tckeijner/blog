@@ -30,6 +30,22 @@ export async function authenticate({ email, password }) {
   };
 }
 
+export async function getUserIdByAuthenticationToken(authToken: string) {
+  return await knex('auth_token').where({ id: authToken }).select('user_id')[0];
+}
+
+export async function insertPost(post: BlogPost) {
+  return knex('blog_post').insert(post);
+}
+
+export interface BlogPost {
+  user_id: number,
+  title: string,
+  content: string,
+  date_created: Date,
+  date_published?: Date,
+}
+
 export async function generateAuthenticationToken({ id }) {
   console.log('Generating authentication token for user' + id);
   const uuid = randomUUID();

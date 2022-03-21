@@ -1,23 +1,27 @@
-import { Button, TextField } from '@mui/material';
+import { Button, CircularProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../state/reducers';
 import { useStyles } from '../theme/theme';
-import { requestAuthToken } from '../webapi/authentication';
 import { loginUser } from '../webapi/authSlice';
 
 const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const status = useSelector((state: AppState) => state.authentication.status);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const authenticationToken: string = await requestAuthToken({
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-    });
-    dispatch(loginUser({ authenticationToken }));
+    dispatch(
+      loginUser({
+        email: formData.get('email') as string,
+        password: formData.get('password') as string,
+      })
+    );
   };
+
+  const spinner = <CircularProgress className={classes.credentialsItem} />;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,6 +49,7 @@ const Login = () => {
         >
           Login
         </Button>
+        {status === 'authenticating' ? spinner : null}
       </Box>
     </form>
   );

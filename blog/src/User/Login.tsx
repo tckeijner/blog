@@ -1,6 +1,7 @@
 import { Button, CircularProgress, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { AppState } from '../state/reducers';
 import { useStyles } from '../theme/theme';
 import { loginUser } from '../webapi/authSlice';
@@ -9,6 +10,7 @@ const Login = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const status = useSelector((state: AppState) => state.authentication.status);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +22,10 @@ const Login = () => {
       })
     );
   };
+
+  if (status === 'authenticated') {
+    navigate('/home');
+  }
 
   const spinner = <CircularProgress className={classes.credentialsItem} />;
 

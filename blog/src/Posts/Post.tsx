@@ -11,7 +11,7 @@ function Post(props: { post: BlogPost }) {
           {props.post.title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-          {props.post.dateTime.toString()}
+          {props.post.dateTime?.toString()}
         </Typography>
         <Typography variant='body2'>{props.post.content}</Typography>
       </CardContent>

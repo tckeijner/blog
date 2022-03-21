@@ -1,35 +1,20 @@
 import { TextField, Button } from '@mui/material';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { useStyles } from '../theme/theme';
-import store from '../state/store';
-import { addDraft, addPublishedPosts } from '../Posts/PostsSlice';
-import { AppState } from '../state/reducers';
+import { useStyles } from '../../theme/theme';
+import store from '../../state/store';
+import { saveDraft } from '../PostsSlice';
+import { AppState } from '../../state/reducers';
 import { useNavigate } from 'react-router-dom';
-import { clearPost } from './NewPostSlice';
+import { clearPost } from '../PostsSlice';
 
 function EditPost() {
   const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const post = useSelector((state: AppState) => state.newPost);
-
-  function handleSave() {
-    dispatch(
-      addPublishedPosts({
-        ...post,
-        dateTime: Date.now(),
-      })
-    );
-    navigate('/home');
-  }
+  const post = useSelector((state: AppState) => state.posts.currentPost);
 
   function handleDraft() {
-    dispatch(
-      addDraft({
-        ...post,
-        dateTime: Date.now(),
-      })
-    );
+    dispatch(saveDraft(post));
     navigate('/home');
   }
 
@@ -58,7 +43,7 @@ function EditPost() {
           <Button variant='outlined' color='primary' onClick={handleDraft}>
             Save draft
           </Button>
-          <Button variant='contained' color='primary' onClick={handleSave}>
+          <Button variant='contained' color='primary'>
             Publish
           </Button>
         </div>

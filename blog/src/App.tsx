@@ -1,6 +1,6 @@
 import { theme, useStyles } from './theme/theme';
 import { ThemeProvider } from '@mui/material/styles';
-import EditPost from './Edit/EditPost';
+import EditPost from './Posts/Edit/EditPost';
 import { Provider } from 'react-redux';
 import store from './state/store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
